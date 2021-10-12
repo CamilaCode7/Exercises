@@ -7,7 +7,7 @@ const connection = mysql.createPool({
   // host : local onde o servidor do MySQL está armazenado.
   user: 'root',
   // user : usuário que vou utilizar para acessar o banco.
-  password: '#Dbvfawdi1',
+  password: '123456',
   // senha do usuário especificado
   database: 'model_example'
   // database : nome do banco ao qual queremos nos conectar;

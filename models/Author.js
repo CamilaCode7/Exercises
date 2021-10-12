@@ -1,4 +1,4 @@
-const connection = require("./connection");
+const connection = require("../infraestrutura/connection");
 
 const getNewAuthor = (authorData) => {
   const { id, firstName, middleName, lastName } = authorData;

@@ -1,4 +1,4 @@
-const connection = require("./connection");
+const connection = require("../infraestrutura/connection");
 
 const getAll = async () => {
   const [book] = await connection.execute(
