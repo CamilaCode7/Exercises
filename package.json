@@ -1,0 +1,21 @@
+{
+  "name": "hello-msc",
+  "version": "1.0.0",
+  "description": "Essas duas camadas são, respectivamente, responsáveis por (1) receber e tratar os dados da requisição e (2) aplicar as regras de negócio da aplicação antes que qualquer comunicação com o banco seja realizada. Dessa forma, o Model precisa fazer menos coisas, o que quer dizer que terei uma arquitetura que delimita mais as responsabilidades de cada camada, de forma que, caso precise alterar uma parte do código, a quantidade de lugares em que precisare mexer é menor, visto que camada tem sua responsabilidade bem delimitada.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "camila",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-rescue": "^1.1.31",
+    "joi": "^17.4.2",
+    "mongodb": "^4.1.3",
+    "nodemon": "^2.0.13"
+  }
+}
