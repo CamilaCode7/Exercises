@@ -5,7 +5,7 @@ const Joi = require('joi');
 const getAll = rescue(async (req, res) => {
    const author = await service.getAll();
 	 
-	 res.status(200).json(authors);
+	 res.status(200).json(author);
 });
 
 const findById = rescue(async (req, res, next) => {
