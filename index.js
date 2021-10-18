@@ -1,8 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cepController = require('./controllers/cepController');
 
 const app = express();
 app.use(bodyParser.json());
+
+app.get('/cep/:cep', cepController.getAllCep);
 
 const PORT = 3000;
 
