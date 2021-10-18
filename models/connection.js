@@ -9,7 +9,7 @@ const connection = mysql.createPool({
   // user : usuário que vou utilizar para acessar o banco.
   password: '123456',
   // senha do usuário especificado
-  database: 'model_example'
+  database: 'cep_lookup'
   // database : nome do banco ao qual queremos nos conectar;
 });
 
