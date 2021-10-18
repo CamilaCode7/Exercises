@@ -2,7 +2,19 @@ const modelAuthor = require('../models/Author');
 
 const getAll = async () => modelAuthor.getAll();
 
-const findById = async (id) => modelAuthor.findById(id);
+const findById = async (id) => {
+  const author = await modelAuthor.findById(id);
+
+  if (!author) {
+    return {
+      error: {
+        code: 'notFound',
+        message: `Não foi possível encontrar um autor com o id ${id}`,
+      },
+    };
+  }
+  return author;
+};
 
 const create = async (firstName, middleName, lastName) => {
   // Buscamos um autor com o mesmo nome completo que pretendo criar
