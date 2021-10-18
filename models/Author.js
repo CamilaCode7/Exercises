@@ -43,8 +43,23 @@ const create = async (firstName, middleName, lastName) =>
     .then((db) => db.collection('authors').insertOne({ firstName, middleName, lastName }))
     .then(res => getNewAuthor({ id: res.insertedId, firstName, middleName, lastName }));
 
+const findByName = async (firstName, middleName, lastName) => {
+  const query = middleName
+  // Determino se devo buscar com ou sem o nome do meio
+    ? { firstName, middleName, lastName }
+    : { firstName, lastName };
+  // Execulta a consulta e retorna o resultado
+  const author = await connection()
+    .then((db) => db.collection('authors').findOne(query));
+  
+  if (!author) return null;
+
+  return getNewAuthor(author);
+};
+
 module.exports = {
   getAll,
   findById,
   create,
+  findByName,
 };
