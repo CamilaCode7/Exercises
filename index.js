@@ -6,6 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get('/cep/:cep', cepController.getAllCep);
+app.post('cep', cepController.create);
 
 const PORT = 3000;
 
