@@ -29,11 +29,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
    verificar se o caminho da request é o nome de um arquivo que existe em `uploads`.
    Se for, o express envia o conteúdo desse arquivo e encerra a response.
    Caso contrário, ele chama `next` e permite que os demais endpoints funcionem */
-// app.use(express.static(__dirname + '/uploads'));
+app.use(express.static(__dirname + '/uploads'));
+
+/* destination: destino do nosso arquivo filename: nome do nosso arquivo.
+   No caso, vamos dar o nome que vem na propriedade `originalname`, ou seja,
+   o mesmo nome que o arquivo tem no computador da pessoa usuária */
+ 
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, 'uploads');
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  }});   
 
 /* Cria uma instância do`multer`configurada. O`multer`recebe um objeto que,
    nesse caso, contém o destino do arquivo enviado. */
-const upload = multer({ dest: 'uploads' });
+const upload = multer({ storage });
 
 app.post('/files/upload', upload.single('file'), (req, res) =>
   res.status(200).json({ body: req.body, file: req.file }));
