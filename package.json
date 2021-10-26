@@ -1,0 +1,22 @@
+{
+  "name": "testando-api",
+  "version": "1.0.0",
+  "description": "Os testes de integração, ou integration tests , servem para verificar se a comunicação entre os componentes de um sistema estão ocorrendo conforme o esperado. Diferente dos testes unitários, onde isolamos cada unidade como fizemos com cada camada do MSC, nos testes de integração o comportamento deverá ser testado com a integração entre todas as unidades.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "~0.0.3",
+    "body-parser": "~1.19.0",
+    "express": "^4.17.1",
+    "jwt-simple": "~0.5.6",
+    "moment": "~2.29.1",
+    "mongodb": "^3.6.2",
+    "nodemon": "~2.0.4"
+  }
+}
