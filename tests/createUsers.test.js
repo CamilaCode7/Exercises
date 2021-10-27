@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const { MongoClient } = require('mongodb');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 
-const server = require('../api/app');
+const server = require('../api/server');
 chai.use(chaiHttp);
 
 const { expect } = chai;
@@ -44,7 +44,7 @@ describe('POST /api/users', () => {
       expect(response).to.have.status(201);
     });
     it('retorna um objeto', () => {
-      expect(response.body).to.be.a('object');
+      expect(response.body).to.be.an('object');
     });
     it('o objeto possui a propriedade "message"', () => {
       expect(response.body).to.have.property('message');

@@ -1,4 +1,5 @@
 const connect = require('./connection');
+const { ObjectId } = require('mongodb');
 
 const registerUser = async (username, password) => {
   const db = await connect();
@@ -12,4 +13,10 @@ const findUser = async (username) => {
   return userData;
 }
 
-module.exports = { registerUser, findUser };
+const findUserById = async (userId) => {
+  const db = await connect()
+  const useId = await db.collection('user').findOne({ _id: ObjectId(userId) });
+  return useId;
+}
+
+module.exports = { registerUser, findUser, findUserById };
