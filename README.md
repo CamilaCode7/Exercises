@@ -8,3 +8,33 @@ Um termo importante para ter na ponta da língua é build . No contexto de deplo
 Para fazer um deploy com o Heroku , não é necessário realizar muitas alterações no projeto. O mais importante é o Heroku saber qual linguagem está sendo utilizada na sua aplicação e, caso esteja utilizando algum, qual o framework.
 A partir dessas informações, o Heroku saberá, por exemplo, que é um projeto em Node.js e que, para executá-lo, ele terá que efetuar o comando descrito no campo scripts.start dentro do package.json (mais conhecido por npm start ).
 Algumas linguagens não definem explicitamente o que deve ser feito para executar a aplicação. Pode acontecer, também, por algum motivo, de o Heroku não conseguir inferir como executar a aplicação. Para esses dois casos citados e outros, deve ser adicionado um Procfile à sua aplicação
+
+## Criando um projeto para deploy
+Para isso, inicie um projeto React:
+
+```cmd
+   npx create-react-app meu-primeiro-deploy-heroku
+   ```
+Em seguida, entre na pasta do projeto.
+
+```cmd
+   git init
+   git add .
+   git commit -m ‘Initialize project using Create React App’
+   ``` 
+### Listando os remotes
+Para listar os remotes de seu projeto, execute o seguinte comando:
+```cmd
+   git remote -v
+   ```
+
+## Heroku remote   
+Para adicionar o remote do Heroku , basta usar o comando create do CLI dentro da pasta da aplicação, da seguinte maneira:
+```cmd
+   heroku create
+   git remote rm heroku
+   heroku create meu-primeiro-deploy-2930
+   heroku create meu-deploy-de-testes-29302 --remote heroku-homolog
+   git remote rename heroku heroku-origin
+   heroku git:remote -a meu-deploy-de-testes-29302 --remote heroku-test
+   ```
