@@ -1,0 +1,12 @@
+{
+  "name": "deploy-process-managers",
+  "version": "1.0.0",
+  "description": "Os Process Managers (PMs) foram criados para facilitar e tornar mais eficaz o gerenciamento de processos. Além disso, os PMs permitem aproveitar melhor os recursos do servidor, ajudando a garantir a disponibilidade das aplicações.",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "camila",
+  "license": "ISC"
+}
