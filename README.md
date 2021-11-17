@@ -53,3 +53,36 @@ pm2 restart <NOME_DO_PROCESSO>
 ```cmd
 pm2 reload <NOME_DO_PROCESSO>
 ```
+# Monitorando Processos
+
+# List
+
+### Para listar todos os processos que estão sendo gerenciados pelo PM2, utilize o comando list.
+```cmd
+pm2 list
+pm2 ls
+```
+
+### Exibir a lista de processos ordenada, basta passar a flag sort . Essa flag permite a ordenação por todas as colunas exibidas: name , id , pid , memory , cpu , status e uptime . Junto a isso, é possível passar um segundo parâmetro informando se a ordenação deverá ser ascendente ou descendente: asc ou desc , respectivamente.
+
+```cmd
+pm2 list --sort name:desc
+```
+
+# Show
+### Para exibir mais detalhes sobre um processo específico, utilize o comando show
+
+```cmd
+pm2 show <NOME_DO_PROCESSO>
+```
+# Logs
+### O comando logs exibe o histórico de seus apps em tempo real. Você pode passar como parâmetro o nome de um processo específico, como no exemplo abaixo. Caso contrário, serão listados os logs de todos os apps.
+```cmd
+pm2 logs <NOME_DO_PROCESSO>
+```
+
+# Monit
+### Utilizando o comando monit , é possível visualizar um dashboard em tempo real diretamente no seu terminal.
+```cmd
+pm2 monit
+```

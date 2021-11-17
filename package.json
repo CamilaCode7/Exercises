@@ -4,9 +4,12 @@
   "description": "Os Process Managers (PMs) foram criados para facilitar e tornar mais eficaz o gerenciamento de processos. Além disso, os PMs permitem aproveitar melhor os recursos do servidor, ajudando a garantir a disponibilidade das aplicações.",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start index.js",
+    "start": "pm2-runtime start ecosystem.config.yml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "camila",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "pm2": "^5.1.2"
+  }
 }
