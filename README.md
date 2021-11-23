@@ -1,40 +1,18 @@
-## Introdução ao Heroku
+## Arquitetura - Princípios SOLID
 
-O Heroku é um PaaS (Platform as a Service), o que significa que ele provém de uma plataforma em nuvem para configurar e realizar o deploy de maneira simples e fácil.
-Para o Heroku, uma aplicação é um conjunto de códigos escritos em uma dessas linguagens citadas anteriormente, provavelmente utilizando um framework , com algumas dependências e descrições que indicam como rodá-la.
-Um termo importante para ter na ponta da língua é build . No contexto de deploys , o build é como chamamos todo o processo em que o código é preparado para posteriormente ser executado. Por exemplo, é durante o build que se executa o npm install para instalar as dependências do projeto.
+Falar de SOLID significa falar de qualidade de código. A arquitetura SOLID é vastamente usada pelo mundo para criar aplicações de software fáceis de se manter e alterar ao longo do tempo. Embora parte dos princípios seja voltada especificamente para Programação Orientada a Objeto(POO).
+## O que exatamente é SOLID?
+A palavra solid (sólido) no contexto de programação, é um acrônimo para cinco princípios e que de fato, se aplicados de maneira conjunta e inteligente, geram solidez e durabilidade para sua arquitetura como um todo. Nas definições originais, SOLID significa o seguinte:
 
-## Como funciona?
-Para fazer um deploy com o Heroku , não é necessário realizar muitas alterações no projeto. O mais importante é o Heroku saber qual linguagem está sendo utilizada na sua aplicação e, caso esteja utilizando algum, qual o framework.
-A partir dessas informações, o Heroku saberá, por exemplo, que é um projeto em Node.js e que, para executá-lo, ele terá que efetuar o comando descrito no campo scripts.start dentro do package.json (mais conhecido por npm start ).
-Algumas linguagens não definem explicitamente o que deve ser feito para executar a aplicação. Pode acontecer, também, por algum motivo, de o Heroku não conseguir inferir como executar a aplicação. Para esses dois casos citados e outros, deve ser adicionado um Procfile à sua aplicação
+* S ingle responsibility principle ( Princípio da responsabilidade única ): uma classe deve ter apenas uma única responsabilidade;
 
-## Criando um projeto para deploy
-Para isso, inicie um projeto React:
+* O pen/Closed principle ( Princípio aberto/fechado ): entidades de software devem ser abertas para extensão, mas fechadas para modificação;
 
-```cmd
-   npx create-react-app meu-primeiro-deploy-heroku
-   ```
-Em seguida, entre na pasta do projeto.
+* L iskov substitution principle ( Princípio de substituição de Liskov ): objetos em um programa devem ser substituíveis por instâncias de seus subtipos, sem alterar a funcionalidade do programa;
 
-```cmd
-   git init
-   git add .
-   git commit -m ‘Initialize project using Create React App’
-   ``` 
-### Listando os remotes
-Para listar os remotes de seu projeto, execute o seguinte comando:
-```cmd
-   git remote -v
-   ```
+* I nterface segregation principle ( Princípio da segregação da interface ): muitas interfaces de clientes específicas são melhores do que uma para todos os propósitos;
 
-## Heroku remote   
-Para adicionar o remote do Heroku , basta usar o comando create do CLI dentro da pasta da aplicação, da seguinte maneira:
-```cmd
-   heroku create
-   git remote rm heroku
-   heroku create meu-primeiro-deploy-2930
-   heroku create meu-deploy-de-testes-29302 --remote heroku-homolog
-   git remote rename heroku heroku-origin
-   heroku git:remote -a meu-deploy-de-testes-29302 --remote heroku-test
-   ```
+* D ependency inversion principle ( Princípio da inversão da dependência ): deve-se depender de abstrações, não de objetos concretos.
+
+## Single responsibility principle
+A regra de Complexidade Cognitiva. Em poucas palavras, essa regra, como outras em conjunto (Complexidade Ciclomática, Número máximo de linhas por função Número máximo de caracteres por linha, entre outros) garante que nenhuma de suas funções é complicada demais. Se ela é muito grande e/ou muito confusa, a regra te alerta para que deixe seu código menor e mais simples.
