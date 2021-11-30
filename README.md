@@ -1,40 +1,36 @@
-## Introdução ao Heroku
+# ORM: Associations
 
-O Heroku é um PaaS (Platform as a Service), o que significa que ele provém de uma plataforma em nuvem para configurar e realizar o deploy de maneira simples e fácil.
-Para o Heroku, uma aplicação é um conjunto de códigos escritos em uma dessas linguagens citadas anteriormente, provavelmente utilizando um framework , com algumas dependências e descrições que indicam como rodá-la.
-Um termo importante para ter na ponta da língua é build . No contexto de deploys , o build é como chamamos todo o processo em que o código é preparado para posteriormente ser executado. Por exemplo, é durante o build que se executa o npm install para instalar as dependências do projeto.
+## Relacionamentos 1:1
+Os métodos de criação de associações que o sequelize disponibiliza são:
+* hasOne
+* belongsTo
+* hasMany
+* belongsToMany
+No caso de relacionamentos 1:1, utilizamos os métodos hasOne e belongsTo. A tradução literal desses métodos facilita o seu entendimento.
 
-## Como funciona?
-Para fazer um deploy com o Heroku , não é necessário realizar muitas alterações no projeto. O mais importante é o Heroku saber qual linguagem está sendo utilizada na sua aplicação e, caso esteja utilizando algum, qual o framework.
-A partir dessas informações, o Heroku saberá, por exemplo, que é um projeto em Node.js e que, para executá-lo, ele terá que efetuar o comando descrito no campo scripts.start dentro do package.json (mais conhecido por npm start ).
-Algumas linguagens não definem explicitamente o que deve ser feito para executar a aplicação. Pode acontecer, também, por algum motivo, de o Heroku não conseguir inferir como executar a aplicação. Para esses dois casos citados e outros, deve ser adicionado um Procfile à sua aplicação
+> `hasOne` = tem um
 
-## Criando um projeto para deploy
-Para isso, inicie um projeto React:
+> `belongsTo` = pertencente a
 
-```cmd
-   npx create-react-app meu-primeiro-deploy-heroku
-   ```
-Em seguida, entre na pasta do projeto.
+## Validando relacionamentos 1:1
 
-```cmd
-   git init
-   git add .
-   git commit -m ‘Initialize project using Create React App’
-   ``` 
-### Listando os remotes
-Para listar os remotes de seu projeto, execute o seguinte comando:
-```cmd
-   git remote -v
-   ```
+validar o relacionamento, para isso precisa criar seeders para inserir dados nas tabelas e um servidor para responder as requisições.
+A grande diferença quando vamos fazer uma requisição que necessite da utilização de uma association com o Sequelize, é o campo include . Esse campo diz ao Sequelize quais serão as configurações da requisição. A propriedade model se refere a qual tabela será utilizada. Já a propriedade as deve ser igual ao que declaramos no momento da criação da associação no respectivo model
 
-## Heroku remote   
-Para adicionar o remote do Heroku , basta usar o comando create do CLI dentro da pasta da aplicação, da seguinte maneira:
-```cmd
-   heroku create
-   git remote rm heroku
-   heroku create meu-primeiro-deploy-2930
-   heroku create meu-deploy-de-testes-29302 --remote heroku-homolog
-   git remote rename heroku heroku-origin
-   heroku git:remote -a meu-deploy-de-testes-29302 --remote heroku-test
-   ```
+## Relacionamentos 1:N
+No caso dos relacionamentos 1:N , não há grande diferença na maneira como criamos as associações. Caso cada employee possuísse vários address , bastaria declarar seu model 
+> `hasMany `: tem muitos
+
+## Eager Loading
+
+Esse método carrega todos os dados na mesma request. Logo, ao utilizar eager loading , todas as informações são trazidas, independente se vamos usá-las ou não. Este modo é útil para cenários em que sabemos, já de antemão, que sempre vamos precisar de todos os dados das entidades envolvidas.
+
+## Lazy Loading
+
+Agora vamos ver como funciona a outra forma de carregar dados de associações: o lazy loading . Esse método consiste, basicamente, em não especificar uma propriedade includes no momento de realizar a query no banco. Dessa forma, cria-se a possibilidade de termos dois usos para o mesmo endpoint.
+Para utilizarmos duas ações diferentes em um endpoint, iremos usar a query string `includeAddresses` , na qual, caso o parâmetro dela seja true os endereços daquele funcionário também serão retornados.
+
+## Relacionamentos N:N
+Nos relacionamentos N:N, existem algumas significativas diferenças ao se criar as associações. Esse tipo de relacionamento pode ser visto também como dois relacionamentos um para muitos (1:N) ligados por uma tabela intermediária, chamada de tabela de junção , ela guarda as informações de como as tabelas se relacionam entre si.
+
+temos um novo tipo de relacionamento: o `belongsToMany` . Esse relacionamento cria um relacionamento do tipo N:N, utilizando o model especificado na opção `throug`h como tabela de associação. Temos também o alias daquela associação, na chave as e, por último, temos os parâmetros `foreignKey` e `otherKey` . Esses dois parâmetros dizem ao Sequelize qual campo utilizar na tabela de associação para identificar cada uma das entidades.
