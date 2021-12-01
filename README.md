@@ -1,36 +1,17 @@
-# ORM: Associations
+# Arquitetura de Software - Camada de View
 
-## Relacionamentos 1:1
-Os métodos de criação de associações que o sequelize disponibiliza são:
-* hasOne
-* belongsTo
-* hasMany
-* belongsToMany
-No caso de relacionamentos 1:1, utilizamos os métodos hasOne e belongsTo. A tradução literal desses métodos facilita o seu entendimento.
+## Por que isso é importante?
+O MVC é um dos padrões arquiteturais mais utilizados no mercado. Inclusive, frameworks como Ruby on Rails e Cake PHP adotam o MVC como estrutura para suas aplicações
 
-> `hasOne` = tem um
+## O que é MVC?
+MVC é uma sigla para Model-View-Controller , um dos mais antigos e mais utilizados padrões de arquitetura de software.
+Como todo padrão de arquitetura, o MVC organiza e divide o código de uma aplicação em camadas, cada uma com suas responsabilidades. Ele é composto por três camadas, a camada de modelo (Model), a camada de apresentação/visão (View) e a camada de controle (Controller).
 
-> `belongsTo` = pertencente a
+## Model e Controller
+O model ainda é onde manipulamos e definimos a estrutura dos dados, sendo que todo acesso aos dados deve passar por essa camada. E o controller ainda é responsável por receber as requisições e enviar as respostas, mas agora ele faz a ponte entre a view e o model , recebendo as ações da view e decidindo o que deve ser mostrado para a pessoa realizando a ação, após consultar o modelo, se necessário.
 
-## Validando relacionamentos 1:1
+## View
 
-validar o relacionamento, para isso precisa criar seeders para inserir dados nas tabelas e um servidor para responder as requisições.
-A grande diferença quando vamos fazer uma requisição que necessite da utilização de uma association com o Sequelize, é o campo include . Esse campo diz ao Sequelize quais serão as configurações da requisição. A propriedade model se refere a qual tabela será utilizada. Já a propriedade as deve ser igual ao que declaramos no momento da criação da associação no respectivo model
-
-## Relacionamentos 1:N
-No caso dos relacionamentos 1:N , não há grande diferença na maneira como criamos as associações. Caso cada employee possuísse vários address , bastaria declarar seu model 
-> `hasMany `: tem muitos
-
-## Eager Loading
-
-Esse método carrega todos os dados na mesma request. Logo, ao utilizar eager loading , todas as informações são trazidas, independente se vamos usá-las ou não. Este modo é útil para cenários em que sabemos, já de antemão, que sempre vamos precisar de todos os dados das entidades envolvidas.
-
-## Lazy Loading
-
-Agora vamos ver como funciona a outra forma de carregar dados de associações: o lazy loading . Esse método consiste, basicamente, em não especificar uma propriedade includes no momento de realizar a query no banco. Dessa forma, cria-se a possibilidade de termos dois usos para o mesmo endpoint.
-Para utilizarmos duas ações diferentes em um endpoint, iremos usar a query string `includeAddresses` , na qual, caso o parâmetro dela seja true os endereços daquele funcionário também serão retornados.
-
-## Relacionamentos N:N
-Nos relacionamentos N:N, existem algumas significativas diferenças ao se criar as associações. Esse tipo de relacionamento pode ser visto também como dois relacionamentos um para muitos (1:N) ligados por uma tabela intermediária, chamada de tabela de junção , ela guarda as informações de como as tabelas se relacionam entre si.
-
-temos um novo tipo de relacionamento: o `belongsToMany` . Esse relacionamento cria um relacionamento do tipo N:N, utilizando o model especificado na opção `throug`h como tabela de associação. Temos também o alias daquela associação, na chave as e, por último, temos os parâmetros `foreignKey` e `otherKey` . Esses dois parâmetros dizem ao Sequelize qual campo utilizar na tabela de associação para identificar cada uma das entidades.
+A view é a camada de apresentação, ou seja, a parte que tem contato com a pessoa que está usando nosso sistema. Serve basicamente como input e output de dados. Ela é responsável por duas coisas: criar a visualização dos dados vindos do model e fornecer meios para que a pessoa possa interagir com o sistema.
+A view se comunica com o controller (recebendo ordens do que exibir e comunicando eventos que ocorrem à medida que a pessoa interage com o sistema) e com o model , recebendo os dados que deve apresentar.
+Aqui, mais uma vez, vemos os benefícios da separação de responsabilidades: como a view se encarrega somente de exibir uma representação dos dados, ela não precisa saber como eles são armazenados.
