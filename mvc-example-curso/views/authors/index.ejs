@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MVC - Exemplo</title>
+  </head>
+  <body>
+    <ul>
+      <!-- authors.forEach((author) => {
+        ...
+
+        E para cada iteração do forEach , será gerada no resultado uma nova tag li contendo o nome de um escritor.
+      }) -->
+      <% authors.forEach((author) => { %>
+        <li><%= author.name %></li>
+        <a href=<%= `/authors/${author.id}`%>>Ver detalhes</a>
+      <% }) %>
+    </ul>
+    <a href="/authors/new">Criar novo autor</a>
+  </body>
+</html>
