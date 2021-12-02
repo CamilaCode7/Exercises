@@ -1,4 +1,5 @@
 // Importando o pacote NET, responsavel pela implementação dos sockets no Node.
+const { count } = require('console');
 const net = require('net');
 
 // Criando o servidor com o método 'create Server' onde recebe uma conexao na qual são exposto
@@ -14,6 +15,10 @@ const server = net.createServer((connection) => {
   connection.write('Mensage do servidor!\r\n');
 // Nessa conexão que foi aberta, podemos fazer várias coisas. Uma delas é escrever/devolver uma mensagem para o cliente.
   connection.pipe(connection)  
+});
+
+server.getConnections((err, count) => {
+  console.log(count);
 });
 
 const PORT = 8080
